@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mapa – hranice Praha</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-uW7E2iHc1zGvJQ+1pAyixEjI4E1z0aapzGwGzFZG3RI="
+      crossorigin=""
+    />
+    <style>
+      #map {
+        height: 100vh;
+        width: 100%;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-o5A/FiJ4D3yDwn94w1gkz+Uos5SJZ8Of0zD9N+Gs1Gs="
+      crossorigin=""
+    ></script>
+
+    <script>
+      // Souřadnice polygonu
+      const polygonCoords = [
+        { lat: 50.174627, lng: 14.513670 },
+        { lat: 50.169513, lng: 14.467103 },
+        { lat: 50.158531, lng: 14.453768 },
+        { lat: 50.157826, lng: 14.428889 },
+        { lat: 50.141477, lng: 14.394433 },
+        { lat: 50.146854, lng: 14.362870 },
+        { lat: 50.131234, lng: 14.357676 },
+        { lat: 50.118445, lng: 14.361009 },
+        { lat: 50.117164, lng: 14.319657 },
+        { lat: 50.129844, lng: 14.302677 },
+        { lat: 50.116140, lng: 14.286496 },
+        { lat: 50.102047, lng: 14.224968 },
+        { lat: 50.088591, lng: 14.260526 },
+        { lat: 50.073464, lng: 14.287095 },
+        { lat: 50.059613, lng: 14.248035 },
+        { lat: 50.049327, lng: 14.270217 },
+        { lat: 50.027364, lng: 14.286853 },
+        { lat: 50.020634, lng: 14.316429 },
+        { lat: 50.002221, lng: 14.294864 },
+        { lat: 49.990735, lng: 14.342616 },
+        { lat: 49.948888, lng: 14.338284 },
+        { lat: 49.954477, lng: 14.394264 },
+        { lat: 49.971034, lng: 14.402307 },
+        { lat: 49.980138, lng: 14.470190 },
+        { lat: 50.010747, lng: 14.526170 },
+        { lat: 50.015915, lng: 14.582149 },
+        { lat: 49.998961, lng: 14.646494 },
+        { lat: 50.038444, lng: 14.665154 },
+        { lat: 50.056831, lng: 14.642311 },
+        { lat: 50.072320, lng: 14.691535 },
+        { lat: 50.100600, lng: 14.688961 },
+        { lat: 50.132164, lng: 14.596948 },
+        { lat: 50.154019, lng: 14.594375 },
+        { lat: 50.165427, lng: 14.531530 },
+        { lat: 50.174828, lng: 14.519256 }
+      ];
+
+      // Inicializace mapy
+      const map = L.map('map').setView([50.0755, 14.4378], 11); // Praha, zoom 11
+
+      // Přidání vrstvy s dlaždicemi
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+      }).addTo(map);
+
+      // Přidání polygonu na mapu
+      const polygon = L.polygon(polygonCoords, {
+        color: 'red',
+        weight: 3,
+        fillColor: '#f03',
+        fillOpacity: 0.3
+      }).addTo(map);
+
+      // Přizpůsobení zobrazení mapy podle polygonu
+      map.fitBounds(polygon.getBounds());
+    </script>
+  </body>
+</html>
